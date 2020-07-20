@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Kemal's DBA Project</title>
+    {% endif %}
+</head>
+<body>
+    <ul>
+        {% for a in group_info %}
+        <li>
+            {{ a }}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Kemal's DBA Project</title>
+    {% endif %}
+</head>
+
+<body>
+    <ul>
+        {% for id, foodgroup in food_groups %}
+        <li>
+            <form method="post" action="/group/{{ id }}">
+            <input type="submit" name="" value="{{ id }}"/> {{ foodgroup }} </i>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
