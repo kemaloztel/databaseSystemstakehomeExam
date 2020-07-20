@@ -8,12 +8,26 @@
     {% endif %}
 </head>
 <body>
-    <ul>
-        {% for a in group_info %}
-        <li>
-            {{ a }}
-        </li>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>short_desc</th>
+                <th>nitrogen_factor</th>
+                <th>protein_factor</th>
+                <th>fat_factor</th>
+                <th>calorie_factor</th>
+            </tr>
+        </thead>
+        <tr>
+        {% for deger in group_info %}
+            <td> {{ deger[0] }} </td>
+            <td> {{ deger[1] }} </td>
+            <td> {{ deger[2] }} </td>
+            <td> {{ deger[3] }} </td>
+            <td> {{ deger[3] }} </td>
+        </tr>
         {% endfor %}
-    </ul>
+        <tbody>
 </body>
 </html>
