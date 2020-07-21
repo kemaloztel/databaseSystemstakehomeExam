@@ -1,7 +1,10 @@
-from connect import get_db
-from flask import Flask, render_template
+from connect import get_db, close_connection
+from flask import Flask, render_template, url_for, request, redirect
+from forms import UpdateForm
+import sqlite3
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = '5791628bb0b13ce0c676dfde280ba245'
 
 def query_db(query, args=(), one=False):
     cur = get_db().execute(query, args)
@@ -9,6 +12,7 @@ def query_db(query, args=(), one=False):
     cur.close()
     return (rv[0] if rv else None) if one else rv
 
+'''
 @app.route('/',  methods=['GET', 'POST'])
 def index(): 
     food_groups = []
@@ -32,6 +36,48 @@ def foodgroupdesc(id):
 
     for i in cur:
         group_info.append(i)
-        print(i)
+        #print(i)
 
     return render_template('group_desc.html', group_info=group_info)
+
+'''
+
+@app.route('/')
+@app.route('/view_update', methods=['GET', 'POST'])
+def viewandupdatefood():
+    food_detail = []
+    
+    cur = get_db().cursor()
+    sql = "SELECT food.id, name, long_desc, short_desc, manufac_name, sci_name FROM food INNER JOIN food_group ON food_group.id = food.food_group_id"
+    cur.execute(sql)
+    
+    try:
+        for a in cur:
+            food_detail.append(a)
+            #print(a)
+    except:
+        pass
+            
+    return render_template('view_update.html', food_detail=food_detail)
+
+
+@app.route('/update_food', methods=['GET', 'POST'])
+def update_food():
+    if request.method == 'POST':
+        if request.form['postButton'] == 'Update':
+            degerler = request.form.getlist('selected')
+            for id in degerler:
+                print(id)
+    return render_template('update_food.html', id=id)
+
+
+@app.route('/updated_food/<id>', methods=['GET', 'POST'])
+def updated_food(id):
+    form=UpdateForm(request.form)
+
+    cur = get_db().cursor()
+    cur = query_db("UPDATE food SET food_group_id=?, long_desc=?, short_desc=?, manufac_name=?, sci_name=? WHERE id=?",
+                 [form.food_group_id.data, form.long_desc.data, form.short_desc.data, form.manufac_name.data,form.sci_name.data, id])
+    get_db().commit()
+    
+    return redirect(url_for('viewandupdatefood'))

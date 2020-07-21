@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Kemal's DBA Project</title>
+    {% endif %}
+</head>
+<body>
+<form action="{{ url_for('update_food') }}" method="post">
+    <input type="submit" name="postButton" value="Update" />
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>food group</th>
+                <th>short desc</th>
+                <th>long desc</th>
+                <th>manufacturer</th>
+                <th>scientific name</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+        {% for deger in food_detail %}
+            <td>
+                <input type="checkbox" name="selected" value="{{ deger[0] }}" style="text-align:center; vertical-align: middle;">
+            </td>
+            <td> {{ deger[1] }} </td>
+            <td> {{ deger[2] }} </td>
+            <td> {{ deger[3] }} </td>
+            <td> {{ deger[4] }} </td>
+            <td> {{ deger[5] }} </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <input type="submit" name="postButton" value="Update" />
+</form>
+</body>
+</html>
