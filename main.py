@@ -12,7 +12,7 @@ def query_db(query, args=(), one=False):
     cur.close()
     return (rv[0] if rv else None) if one else rv
 
-
+@app.route('/')
 @app.route('/home',  methods=['GET', 'POST'])
 def index(): 
     food_groups = []
@@ -39,6 +39,7 @@ def foodgroupdesc(id):
         #print(i)
 
     return render_template('group_desc.html', group_info=group_info)
+
 
 @app.route('/view_update', methods=['GET', 'POST'])
 def viewandupdatefood():
@@ -78,7 +79,6 @@ def updated_food(id):
     
     return redirect(url_for('viewandupdatefood'))
 
-@app.route('/')
 @app.route('/nutrition_weight_detail', methods=['GET', 'POST'])
 def nutrition_weight():
     food_detailll = []

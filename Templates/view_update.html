@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% if title %}
-    <title>{{ title }}</title>
-    {% else %}
-    <title>Kemal's DBA Project</title>
-    {% endif %}
-</head>
-<body>
+{% extends "layout.html" %}
+{% block content %}
+
 <form action="{{ url_for('update_food') }}" method="post">
     <input type="submit" name="postButton" value="Update" />
-    <table>
+    <table class="table table-striped">>
         <thead>
             <tr>
                 <th></th>
@@ -38,5 +31,4 @@
     </table>
     <input type="submit" name="postButton" value="Update" />
 </form>
-</body>
-</html>
+{% endblock %}

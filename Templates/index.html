@@ -1,22 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    {% if title %}
-    <title>{{ title }}</title>
-    {% else %}
-    <title>Kemal's DBA Project</title>
-    {% endif %}
-</head>
-
-<body>
-    <ul>
-        {% for id, foodgroup in food_groups %}
-        <li>
-            <form method="post" action="/group/{{ id }}">
-            <input type="submit" name="" value="{{ id }}"/> {{ foodgroup }} </i>
-            </form>
-        </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "layout.html" %}
+{% block content %}
+<div class="content-wrapper">
+    <!-- main body -->
+    <div class="row">
+      <div class="col-xl-5 mb-30">
+        <div class="card card-statistics h-100">
+          <div class="card-body">
+            <ul class="list-group">
+                {% for id, foodgroup in food_groups %}
+                <li class="list-group-item list-group-item-primary">
+                    <form method="post" action="/group/{{ id }}">
+                        <input type="submit" name="" value="SEE"/> {{ foodgroup }} </i>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

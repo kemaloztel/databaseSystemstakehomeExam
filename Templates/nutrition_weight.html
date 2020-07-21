@@ -1,30 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    {% if title %}
-    <title>{{ title }}</title>
-    {% else %}
-    <title>Kemal's DBA Project</title>
-    {% endif %}
-</head>
-<body>
-    <table>
+{% extends "layout.html" %}
+{% block content %}
+    <table class="table table-striped">
         <thead>
-            <tr>
-                <th>Food Group</th>
-                <th>Long Desc</th>
-                <th>Short Desc</th>
-                <th>Manufacturer</th>
-                <th>Scientific Name</th>
-                <th>Manufacturer</th>
-                <th>Nutrition</th>
-                <th>Amounts</th>
-                <th>Units</th>
-                <th>Per</th>
-                <th>Description</th>
-                <th>GM Weight</th>
+            <tr class="table-success">
+                <th scope="col">Food Group</th>
+                <th scope="col">Long Desc</th>
+                <th scope="col">Short Desc</th>
+                <th scope="col">Manufacturer</th>
+                <th scope="col">Scientific Name</th>
+                <th scope="col">Manufacturer</th>
+                <th scope="col">Nutrition</th>
+                <th scope="col">Amounts</th>
+                <th scope="col">Units</th>
+                <th scope="col">Per</th>
+                <th scope="col">Description</th>
+                <th scope="col">GM Weight</th>
             </tr>
         </thead>
+        <tbody>
         <tr>
         {% for item in food_detailll %}
             <td> {{ item[0] }} </td>
@@ -41,6 +34,6 @@
             <td> {{ item[11] }} </td>
         </tr>
         {% endfor %}
-        <tbody>
-</body>
-</html>
+        </tbody>
+    </table>
+{% endblock %}

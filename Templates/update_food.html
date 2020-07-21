@@ -1,26 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-</head>
-<body>
+{% extends "layout.html" %}
+{% block content %}
     <h5> Update Food </h5>
+    <p>Food Group: 100,200,300,..2000,2100,2200,2500,3500,3600.</p>
+    <p>Please select from these one for food group</p>
         <form method="post" action="/updated_food/{{ id }}">
-            <p>Food Group: 100,200,300,..2000,2100,2200,2500,3500,3600.</p>
-            <p>Please select from these one for food group</p>
-            <label for="food_group_id">Food Group: </label>
-            <input type="text" name="food_group_id" value="{{ food_group_id }}">
-            <label for="short_desc">Short Description: </label>
-            <input type="text" name="short_desc" value="{{ short_desc }}">
-            <br/>
-            <label for="long_desc">Long Description: </label>
-            <input type="text" name="long_desc" value="{{ long_desc }}">
-            <label for="manufac_name">Manufacturor Name: </label>
-            <input type="text" name="manufac_name" value="{{ manufac_name }}">
-            <label for="sci_name">Scientific Name: </label>
-            <input type="text" name="sci_name" value="{{ sci_name }}">
-
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="food_group_id">Food Group: </label>
+                    <input type="text" name="food_group_id" value="{{ food_group_id }}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="short_desc">Short Description: </label>
+                    <input type="text" name="short_desc" value="{{ short_desc }}">
+                </div>
+            </div>
+            <div class="form-group">
+                    <label for="long_desc">Long Description: </label>
+                    <input type="text" name="long_desc" value="{{ long_desc }}">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="manufac_name">Manufacturor Name: </label>
+                    <input type="text" name="manufac_name" value="{{ manufac_name }}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="sci_name">Scientific Name: </label>
+                    <input type="text" name="sci_name" value="{{ sci_name }}">
+                </div>
+            </div>
             <input type="submit" value="Update !">
         </form>
-</body>
-</html>
+{% endblock %}
