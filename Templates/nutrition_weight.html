@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Kemal's DBA Project</title>
+    {% endif %}
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Food Group</th>
+                <th>Long Desc</th>
+                <th>Short Desc</th>
+                <th>Manufacturer</th>
+                <th>Scientific Name</th>
+                <th>Manufacturer</th>
+                <th>Nutrition</th>
+                <th>Amounts</th>
+                <th>Units</th>
+                <th>Per</th>
+                <th>Description</th>
+                <th>GM Weight</th>
+            </tr>
+        </thead>
+        <tr>
+        {% for item in food_detailll %}
+            <td> {{ item[0] }} </td>
+            <td> {{ item[1] }} </td>
+            <td> {{ item[2] }} </td>
+            <td> {{ item[3] }} </td>
+            <td> {{ item[4] }} </td>
+            <td> {{ item[5] }} </td>
+            <td> {{ item[6] }} </td>
+            <td> {{ item[7] }} </td>
+            <td> {{ item[8] }} </td>
+            <td> {{ item[9] }} </td>
+            <td> {{ item[10] }} </td>
+            <td> {{ item[11] }} </td>
+        </tr>
+        {% endfor %}
+        <tbody>
+</body>
+</html>

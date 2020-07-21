@@ -12,8 +12,8 @@ def query_db(query, args=(), one=False):
     cur.close()
     return (rv[0] if rv else None) if one else rv
 
-'''
-@app.route('/',  methods=['GET', 'POST'])
+
+@app.route('/home',  methods=['GET', 'POST'])
 def index(): 
     food_groups = []
     food_groups_id = []
@@ -40,9 +40,6 @@ def foodgroupdesc(id):
 
     return render_template('group_desc.html', group_info=group_info)
 
-'''
-
-@app.route('/')
 @app.route('/view_update', methods=['GET', 'POST'])
 def viewandupdatefood():
     food_detail = []
@@ -59,7 +56,6 @@ def viewandupdatefood():
         pass
             
     return render_template('view_update.html', food_detail=food_detail)
-
 
 @app.route('/update_food', methods=['GET', 'POST'])
 def update_food():
@@ -81,3 +77,24 @@ def updated_food(id):
     get_db().commit()
     
     return redirect(url_for('viewandupdatefood'))
+
+@app.route('/')
+@app.route('/nutrition_weight_detail', methods=['GET', 'POST'])
+def nutrition_weight():
+    food_detailll = []
+
+    cur = get_db().cursor()
+    sql5 = "SELECT fg.name, long_desc, short_desc, manufac_name, sci_name, nu.name, n.amount, units, w.amount, description, gm_weight " \
+          "FROM food AS f INNER JOIN nutrition AS n ON f.id = n.food_id " \
+          "INNER JOIN nutrient AS nu ON n.nutrient_id = nu.id " \
+          "INNER JOIN weight AS  w ON f.id = w.food_id " \
+          "INNER JOIN food_group AS fg ON f.food_group_id = fg.id"
+    cur.execute(sql5)
+
+    try:
+        for i in cur:
+            food_detailll.append(i)
+    except:
+        pass
+
+    return render_template('nutrition_weight.html', food_detailll=food_detailll)
